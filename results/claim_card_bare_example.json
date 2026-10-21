@@ -1,0 +1,22 @@
+{
+ "schema": "gatecrasher.claim-card/1",
+ "generated": "2026-10-21",
+ "subject": {
+  "model": "one-hidden-layer network (32 units)"
+ },
+ "claims": [
+  {
+   "id": "privacy-eps-1",
+   "property": "privacy",
+   "statement": "epsilon at most 1",
+   "threshold": 1.0,
+   "direction": "at_most",
+   "audit": {
+    "method": "canary membership test",
+    "replicates": 1
+   },
+   "measured": 0.96,
+   "status": "PASS"
+  }
+ ]
+}

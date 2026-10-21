@@ -1,0 +1,94 @@
+{
+ "band_width": {
+  "fairness_dp_100": 0.2946457931114742,
+  "fairness_dp_500": 0.1220740508078188,
+  "fairness_eo_100": 0.4033999570409307,
+  "robustness_100": 0.1504999999999999,
+  "robustness_1000": 0.0350499999999999
+ },
+ "queries_for_5pt_band": {
+  "fairness_demographic_parity": 2000,
+  "fairness_equalised_odds": 2000,
+  "robustness": 1000
+ },
+ "privacy": {
+  "pass_rate_eps1_unprotected": {
+   "20": 0.94,
+   "50": 0.2,
+   "100": 0.03,
+   "200": 0.07
+  },
+  "mean_bound_unprotected": {
+   "20": 0.375,
+   "50": 1.214,
+   "100": 1.799,
+   "200": 1.834
+  },
+  "mean_bound_dp": {
+   "20": 0.011,
+   "50": 0.014,
+   "100": 0.015,
+   "200": 0.033
+  }
+ },
+ "robustness_strength": {
+  "standard|eps=0.02|effort=1": 0.914,
+  "standard|eps=0.02|effort=400": 0.854,
+  "standard|eps=0.05|effort=1": 0.891,
+  "standard|eps=0.05|effort=400": 0.662,
+  "standard|eps=0.1|effort=1": 0.821,
+  "standard|eps=0.1|effort=400": 0.342,
+  "standard|eps=0.15|effort=1": 0.735,
+  "standard|eps=0.15|effort=400": 0.23,
+  "adversarially trained|eps=0.02|effort=1": 0.857,
+  "adversarially trained|eps=0.02|effort=400": 0.852,
+  "adversarially trained|eps=0.05|effort=1": 0.856,
+  "adversarially trained|eps=0.05|effort=400": 0.838,
+  "adversarially trained|eps=0.1|effort=1": 0.85,
+  "adversarially trained|eps=0.1|effort=400": 0.807,
+  "adversarially trained|eps=0.15|effort=1": 0.844,
+  "adversarially trained|eps=0.15|effort=400": 0.752
+ },
+ "interference_privacy": {
+  "clean_accuracy": {
+   "0": 0.94,
+   "0.25": 0.933,
+   "0.5": 0.932,
+   "1": 0.932,
+   "2": 0.928,
+   "4": 0.916
+  },
+  "robust_accuracy": {
+   "0": 0.281,
+   "0.25": 0.378,
+   "0.5": 0.355,
+   "1": 0.273,
+   "2": 0.083,
+   "4": 0.004
+  },
+  "fairness_gap": {
+   "0": 0.233,
+   "0.25": 0.221,
+   "0.5": 0.22,
+   "1": 0.22,
+   "2": 0.22,
+   "4": 0.222
+  }
+ },
+ "interference_robustness": {
+  "epsilon_bound": {
+   "0": 2.027,
+   "0.02": 0.761,
+   "0.05": 0.127,
+   "0.1": 0.009,
+   "0.2": 0.0
+  },
+  "accuracy": {
+   "0": 0.942,
+   "0.02": 0.931,
+   "0.05": 0.914,
+   "0.1": 0.877,
+   "0.2": 0.865
+  }
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "fashion_classes": [
+  "t-shirt/top",
+  "dress"
+ ],
+ "clean_accuracy": {
+  "standard": 0.936,
+  "adversarially trained": 0.8725
+ },
+ "compas_accuracy": {
+  "logistic": 0.687,
+  "mlp": 0.6894
+ },
+ "compas_test_n": 2112,
+ "fashion_test_n": 2000
+}

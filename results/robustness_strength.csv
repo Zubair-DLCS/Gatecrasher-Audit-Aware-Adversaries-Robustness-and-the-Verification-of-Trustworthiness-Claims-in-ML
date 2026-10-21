@@ -1,0 +1,57 @@
+model,epsilon,steps,restarts,robust_accuracy
+standard,0.02,1,1,0.914
+standard,0.02,5,1,0.867
+standard,0.02,10,1,0.854
+standard,0.02,20,1,0.854
+standard,0.02,40,1,0.854
+standard,0.02,40,5,0.854
+standard,0.02,40,10,0.854
+standard,0.05,1,1,0.891
+standard,0.05,5,1,0.707
+standard,0.05,10,1,0.672
+standard,0.05,20,1,0.669
+standard,0.05,40,1,0.668
+standard,0.05,40,5,0.663
+standard,0.05,40,10,0.662
+standard,0.1,1,1,0.821
+standard,0.1,5,1,0.412
+standard,0.1,10,1,0.365
+standard,0.1,20,1,0.36
+standard,0.1,40,1,0.36
+standard,0.1,40,5,0.345
+standard,0.1,40,10,0.342
+standard,0.15,1,1,0.735
+standard,0.15,5,1,0.28
+standard,0.15,10,1,0.267
+standard,0.15,20,1,0.266
+standard,0.15,40,1,0.266
+standard,0.15,40,5,0.237
+standard,0.15,40,10,0.23
+adversarially trained,0.02,1,1,0.857
+adversarially trained,0.02,5,1,0.854
+adversarially trained,0.02,10,1,0.852
+adversarially trained,0.02,20,1,0.852
+adversarially trained,0.02,40,1,0.852
+adversarially trained,0.02,40,5,0.852
+adversarially trained,0.02,40,10,0.852
+adversarially trained,0.05,1,1,0.856
+adversarially trained,0.05,5,1,0.84
+adversarially trained,0.05,10,1,0.838
+adversarially trained,0.05,20,1,0.838
+adversarially trained,0.05,40,1,0.838
+adversarially trained,0.05,40,5,0.838
+adversarially trained,0.05,40,10,0.838
+adversarially trained,0.1,1,1,0.85
+adversarially trained,0.1,5,1,0.814
+adversarially trained,0.1,10,1,0.807
+adversarially trained,0.1,20,1,0.807
+adversarially trained,0.1,40,1,0.807
+adversarially trained,0.1,40,5,0.807
+adversarially trained,0.1,40,10,0.807
+adversarially trained,0.15,1,1,0.844
+adversarially trained,0.15,5,1,0.773
+adversarially trained,0.15,10,1,0.754
+adversarially trained,0.15,20,1,0.754
+adversarially trained,0.15,40,1,0.754
+adversarially trained,0.15,40,5,0.752
+adversarially trained,0.15,40,10,0.752
