@@ -2,16 +2,11 @@
 
 **Audit-aware adversaries, robustness, and the verification of trustworthiness claims in ML.**
 
-An audit is the gate a trustworthiness claim has to pass before anyone trusts it: *trained
+An audit is the gate which an ML trustworthiness claim has to pass before anyone trusts it with parameters like  *trained
 with differential privacy at epsilon 1*, *robust to perturbations of size 0.1*, *fair across
-groups*. Regulation increasingly requires such claims to be evidenced, and the evidence is
-almost always an empirical test rather than a proof.
+groups*. AI Regulation increasingly requires such claims to be evidenced rather than an empirical test.
 
-This repository asks what those tests can actually settle, and answers it without assuming
-anyone misbehaves. Hold a model fixed, change nothing about it, and re-run its audit while
-redrawing only the choices the claim never pins down: which examples to query, the random
-seed, how hard to attack, which canaries to insert. The verdict is then a random variable, and
-its spread is a property of the audit alone.
+This repository examines what an audit can reliably tell us, without accusing anyone of malicious intentions.  The audit is repeated with different choices on the same model. The audit is conducted using different examples, random seed, how strong the attacks should be and added altercations. The different audit parameters reveals the audit internal flaws and uncertainity rather than the model changes.
 
 **That spread is a lower bound on how little an audit establishes.** An audit that cannot
 reproduce its own verdict against its own randomness cannot withstand an adversary either, so
