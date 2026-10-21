@@ -130,7 +130,8 @@ def build_cards():
                      "0.86 at size 0.02 and 0.35 at size 0.1."],
         interference=["Adversarial training raises this number, and also strips the privacy "
                       "audit below of most of its power: the epsilon it can rule out falls "
-                      "from 2.0 to 0.0 as the training radius grows. See "
+                      "from 2.0 to 0.0 as the training radius grows, which is a loss of "
+                      "detection and not a gain in privacy. See "
                       "results/interference_robustness.csv."])
     priv = make_claim(
         "privacy-eps-1", "privacy",
@@ -149,7 +150,12 @@ def build_cards():
                       "before privacy hardening does not survive it. See "
                       "results/interference_privacy.csv.",
                       "This audit's power depends on how the model was trained, so its number "
-                      "cannot be compared across pipelines."])
+                      "cannot be compared across pipelines.",
+                      "On an adversarially trained model this audit rules out less (2.03 to "
+                      "0.00 as the training radius grows), while membership inference against "
+                      "robust models is reported to succeed MORE often (Song, Shokri and "
+                      "Mittal, arXiv:1905.10291). A lower number from this audit is therefore "
+                      "not evidence of less leakage."])
     cards.append(make_card(
         {"model": "one-hidden-layer network (32 units)", "task": "t-shirt/top vs dress",
          "dataset": "Fashion-MNIST",

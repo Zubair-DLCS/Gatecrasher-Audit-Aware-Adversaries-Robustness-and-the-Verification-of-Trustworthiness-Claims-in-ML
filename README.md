@@ -107,9 +107,24 @@ false and looks fine.
 In the other direction, adversarial training drives the privacy audit's bound from 2.03 down
 to 0.00 as the training radius grows. The careful reading matters: this audit only ever
 lower-bounds epsilon, so a smaller number means **the audit detected less**, not that the
-model leaks less. The audit's power depends on how the model was trained, which means its
-output cannot be compared across pipelines, and a model can be made harder to audit by a
-change made for an unrelated reason.
+model leaks less.
+
+The distinction is not pedantic, because the true quantity is known to move the other way.
+[Song, Shokri and Mittal (2019)](https://arxiv.org/abs/1905.10291) measured membership
+inference against six robust training methods and found robust models leak *more* than
+naturally trained ones: on Fashion-MNIST the membership-inference advantage rises from 14.2%
+to 29.0%, and up to 4.5x on other datasets. Their attack targets in-distribution training
+points, which robust training fits more tightly; the audit here asks whether an
+out-of-distribution noise canary can be told from a held-out one, and adversarial training
+flattens the loss surface over an entire epsilon-ball, which plausibly prevents the model
+spiking on an isolated noise image. That explanation is not tested here and the two setups
+are not directly comparable, but the direction of the gap is the point: **leakage rises while
+the audit's reading falls.** An auditor who reports this number without the caveat reports
+most reassurance exactly where there is most to find.
+
+More generally, the audit's power depends on how the model was trained, which means its output
+cannot be compared across pipelines, and a model can be made harder to audit by a change made
+for an unrelated reason.
 
 ---
 
@@ -185,6 +200,38 @@ Individual stages: `src/stability.py`, `src/interference.py`, `src/summary.py`,
 - **Interference is measured on one pair of pipelines** at a time, and the privacy-to-
   robustness result is non-monotone at low noise (0.28 to 0.38 at noise 0.25 before falling),
   which is not explained here.
+
+## Related work, and what is not new here
+
+Each finding above is already established inside its own subfield, and in every case the
+specialist literature does it better. Stating that plainly is the only way the rest of the
+repository can be read for what it is.
+
+| Finding | Where it is already known | How that work is stronger |
+|---|---|---|
+| 1-2. A fairness verdict moves under resampling, and a stable one is expensive | [Cherian and Candes, *Statistical Inference for Fairness Auditing*](https://arxiv.org/abs/2305.03712), 2023; [*Can I Trust My Fairness Metric?*](https://proceedings.neurips.cc/paper/2020/hash/d83de59e10227072a9c034ce10029c39-Abstract.html), NeurIPS 2020 | Simultaneous confidence bounds over every subgroup at once, by a rescaled bootstrap with family-wise error control, on COMPAS and Folktables. The percentile band used here is a cruder instrument on the same problem. |
+| 3. Reported robust accuracy is set by attack effort | [Carlini et al., *On Evaluating Adversarial Robustness*](https://arxiv.org/abs/1902.06705), 2019; [AutoAttack and RobustBench](https://arxiv.org/abs/2010.09670), 2020 | This is the founding lesson of the field, and a standardised parameter-free attack plus a public leaderboard already exist to settle it. Nothing in finding 3 would surprise anyone who works on adversarial examples. |
+| 4. A canary privacy audit has no power at a small canary budget | [Steinke, Nasr and Jagielski, *Privacy Auditing with One (1) Training Run*](https://arxiv.org/abs/2305.08846), NeurIPS 2023; [Nasr et al., *Tight Auditing of Differentially Private Machine Learning*](https://arxiv.org/abs/2302.07956), USENIX Security 2023 | The one-run auditing line exists precisely because multi-run canary auditing is underpowered, and it obtains far tighter bounds at a fraction of the cost. The audit here is deliberately the older, weaker recipe, on the grounds that it is the one in common use; it is not the state of the art and no result here should be read as a limit on what privacy auditing can do. |
+| 5. Privacy noise costs robustness | [Bagdasaryan, Poursaeed and Shmatikov, *Differential Privacy Has Disparate Impact on Model Accuracy*](https://arxiv.org/abs/1905.12101), NeurIPS 2019; and the DP-SGD fairness and robustness analyses that followed it | Those results come with theory and hold at scale. The measurement here is empirical confirmation on a one-hidden-layer network. |
+| Claim cards | [Staufer, Reuel, Yang and Casper, *Audit Cards: Contextualizing AI Evaluations*](https://arxiv.org/abs/2504.13839), 2025 | Audit Cards is the closest prior art and more thorough on everything to do with provenance, access and process integrity. It has no field for the statistical reliability of the audit's own verdict, which is the one place the cards here add something. |
+
+What is left, once all of that is subtracted:
+
+- **One threshold-free measurement applied identically to all three properties.** Privacy,
+  robustness and fairness auditing have separate literatures with incompatible notions of
+  reliability, and no common scale on which an auditor can ask which of three verdicts is the
+  flimsiest. The indeterminate band is that scale. It is a modest contribution, but it is the
+  reason the five findings sit in one repository rather than three.
+- **An `INDETERMINATE` status, and a validator that refuses a card without a band.** A format
+  proposal rather than a result, aimed at a specific gap in Audit Cards.
+- **Audit power is a function of the training pipeline**, so the same audit's number is not
+  comparable across pipelines, and can be reduced by a change made for an unrelated reason
+  (finding 5, second half). Adjacent to Song et al. above, but not the same claim, and it runs
+  in the opposite direction to the leakage itself.
+
+The obvious way to make this stronger is to replace each audit with the best current method
+and re-measure the bands, since *the state-of-the-art audit still cannot settle a band this
+wide* is a claim worth making, and *the obsolete audit is unreliable* is not.
 
 ## Credits
 
